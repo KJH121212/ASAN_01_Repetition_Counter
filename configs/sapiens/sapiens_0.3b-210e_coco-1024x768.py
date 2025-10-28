@@ -4,7 +4,7 @@
 # This source code is licensed under the license found in the
 # LICENSE file in the root directory of this source tree.
 
-_base_ = ['../../_base_/default_runtime.py']
+_base_ = ['./_base_/default_runtime.py']
 
 ##-----------------------------------------------------------------
 model_name = 'sapiens_0.3b'; embed_dim=1024; num_layers=24
@@ -12,7 +12,7 @@ model_name = 'sapiens_0.3b'; embed_dim=1024; num_layers=24
 # model_name = 'sapiens_1b'; embed_dim=1536; num_layers=40
 # model_name = 'sapiens_2b'; embed_dim=1920; num_layers=48
 
-pretrained_checkpoint='../pretrain/checkpoints/sapiens_0.3b/sapiens_0.3b_epoch_1600_clean.pth'
+pretrained_checkpoint='../../checkpoints/sapiens/sapiens_0.3b_coco_best_coco_AP_796.pth'
 
 ##-----------------------------------------------------------------
 # evaluate_every_n_epochs = 10 ## default

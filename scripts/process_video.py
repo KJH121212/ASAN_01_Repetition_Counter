@@ -21,7 +21,8 @@ CSV_PATH = DATA_DIR / "metadata.csv"
 # 모듈 경로 추가
 sys.path.append(str(BASE_DIR))
 
-from function import extract_frames, create_overlay,extract_keypoints, reextract_missing_keypoints
+from ASAN_01_Repeatition_Counter.function import render_skeleton_video
+from function import extract_frames, extract_keypoints, reextract_missing_keypoints
 from mmpose.apis import init_model as init_pose_estimator
 
 
@@ -126,7 +127,7 @@ def process_video(video_path: Path,
     # ---------------- 4. Overlay 생성 ----------------
     if run_overlay:
         print("run_overlay를 skip 하지 않습니다.")
-        create_overlay(str(frame_dir), str(keypoint_dir), str(mp4_path), fps=30)
+        render_skeleton_video(str(frame_dir), str(keypoint_dir), str(mp4_path), fps=30)
         print(f"[INFO] Overlay mp4 생성 완료 → {mp4_path}")
         overlay_done = True
 
