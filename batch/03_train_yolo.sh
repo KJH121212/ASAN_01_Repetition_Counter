@@ -52,6 +52,8 @@ docker run -it --rm --device=nvidia.com/gpu=all --shm-size 1TB \
         --imgsz 640 \
         --device 0 \
         --patience 50 \
-        --epochs 3 \
+        --epochs 150 \
+        --name yolo11_pose_12kp_ft2 \
+        --resume \
         --wandb_project RepeatitionCounter
         "
