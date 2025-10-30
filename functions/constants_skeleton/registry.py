@@ -4,8 +4,8 @@
 from importlib import import_module
 
 AVAILABLE_MODELS = {
-    "coco17": "function.constants_skeleton.coco17",
-    "yolo12": "function.constants_skeleton.yolo12",
+    "coco17": "functions.constants_skeleton.coco17",
+    "yolo12": "functions.constants_skeleton.yolo12",
 }
 
 def load_skeleton_constants(model_type: str):

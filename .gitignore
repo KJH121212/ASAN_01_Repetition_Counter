@@ -98,3 +98,4 @@ batch/*.log
 # Sapiens 모델 
 # ----------------------------------------
 pose/
+data/_yolo_stage

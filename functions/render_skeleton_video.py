@@ -2,7 +2,7 @@ import cv2, json
 import numpy as np
 from pathlib import Path
 from tqdm import tqdm
-from function.constants_skeleton.registry import load_skeleton_constants
+from functions.constants_skeleton.registry import load_skeleton_constants
 
 def render_skeleton_video(
     frame_dir: str,
@@ -12,7 +12,7 @@ def render_skeleton_video(
     kp_radius: int = 4,
     line_thickness: int = 2,
     model_type: str = "coco17",     # ✅ constants_skeleton에서 모델 타입 지정
-    flip_horizontal: bool = False   # ✅ 선택적 반전
+    flip_horizontal: bool = True   # ✅ 선택적 반전
 ):
     """
     프레임 + keypoints JSON → skeleton overlay mp4 생성
@@ -61,29 +61,35 @@ def render_skeleton_video(
             writer.write(frame)
             continue
 
-        inst = data["instance_info"][0]
-        kpts = np.array(inst["keypoints"])
+        # 기존
+        # inst = data["instance_info"][0]
+        # kpts = np.array(inst["keypoints"])
 
-        # Skeleton 라인
-        for i, j in SKELETON_LINKS:
-            if i >= len(kpts) or j >= len(kpts):
-                continue
-            if i in EXCLUDE_POINTS or j in EXCLUDE_POINTS:
-                continue
-            pt1, pt2 = tuple(map(int, kpts[i])), tuple(map(int, kpts[j]))
-            cv2.line(frame, pt1, pt2, COLOR_SK, line_thickness)
+        # 수정 버전 ✅ 모든 skeleton 그리기
+        for person in data["instance_info"]:
+            kpts = np.array(person["keypoints"])
 
-        # Keypoints 점
-        for idx, (x, y) in enumerate(kpts):
-            if idx in EXCLUDE_POINTS or x <= 0 or y <= 0:
-                continue
-            if idx in LEFT_POINTS:
-                color = COLOR_L
-            elif idx in RIGHT_POINTS:
-                color = COLOR_R
-            else:
-                color = COLOR_NEUTRAL
-            cv2.circle(frame, (int(x), int(y)), kp_radius, color, -1)
+            # Skeleton 라인
+            for i, j in SKELETON_LINKS:
+                if i >= len(kpts) or j >= len(kpts):
+                    continue
+                if i in EXCLUDE_POINTS or j in EXCLUDE_POINTS:
+                    continue
+                pt1, pt2 = tuple(map(int, kpts[i])), tuple(map(int, kpts[j]))
+                cv2.line(frame, pt1, pt2, COLOR_SK, line_thickness)
+
+            # Keypoints 점
+            for idx, (x, y) in enumerate(kpts):
+                if idx in EXCLUDE_POINTS or x <= 0 or y <= 0:
+                    continue
+                if idx in LEFT_POINTS:
+                    color = COLOR_L
+                elif idx in RIGHT_POINTS:
+                    color = COLOR_R
+                else:
+                    color = COLOR_NEUTRAL
+                cv2.circle(frame, (int(x), int(y)), kp_radius, color, -1)
+
 
         # 안내 문구
         legend_text = "L: Blue   |   R: Red"
