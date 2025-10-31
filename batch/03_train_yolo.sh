@@ -22,15 +22,15 @@ WORKSPACE_PATH="/mnt/nas203/ds_RehabilitationMedicineData/IDs/Kimjihoo/ASAN_01_R
 RANDOM_PORT=$(( (RANDOM % 101) + 8000 ))  # 8000~8100 사이 포트
 LOG_PATH="/mnt/nas203/ds_RehabilitationMedicineData/IDs/Kimjihoo/ASAN_01_Repeatition_Counter/batch/logs"
 
-# ------------------------------------------------------------
-# Docker 이미지 빌드
-# ------------------------------------------------------------
-echo "[INFO] Building Docker image: ${DOCKER_IMAGE_NAME}"
-docker build -t ${DOCKER_IMAGE_NAME} -f ${DOCKERFILE_PATH} ${WORKSPACE_PATH}
-if [ $? -ne 0 ]; then
-    echo "[❌ ERROR] Docker build failed."
-    exit 1
-fi
+# # ------------------------------------------------------------
+# # Docker 이미지 빌드
+# # ------------------------------------------------------------
+# echo "[INFO] Building Docker image: ${DOCKER_IMAGE_NAME}"
+# docker build -t ${DOCKER_IMAGE_NAME} -f ${DOCKERFILE_PATH} ${WORKSPACE_PATH}
+# if [ $? -ne 0 ]; then
+#     echo "[❌ ERROR] Docker build failed."
+#     exit 1
+# fi
 
 # ------------------------------------------------------------
 # Docker 컨테이너 실행
@@ -52,8 +52,7 @@ docker run -it --rm --device=nvidia.com/gpu=all --shm-size 1TB \
         --imgsz 640 \
         --device 0 \
         --patience 50 \
-        --epochs 150 \
-        --name yolo11_pose_12kp_ft2 \
-        --resume \
+        --epochs 100 \
+        --name yolo11_pose_12kp_ft3 \
         --wandb_project RepeatitionCounter
         "

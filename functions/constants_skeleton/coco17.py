@@ -16,7 +16,7 @@ COLOR_NEUTRAL  = (0, 255, 0)     # Central keypoints (green)
 # 0: nose, 1–4: eyes/ears, 5–16: body keypoints
 LEFT_POINTS    = [5, 7, 9, 11, 13, 15]   # left shoulder–elbow–wrist–hip–knee–ankle
 RIGHT_POINTS   = [6, 8, 10, 12, 14, 16]  # right shoulder–elbow–wrist–hip–knee–ankle
-EXCLUDE_POINTS = []                      # 필요시 제외할 keypoints (없음)
+EXCLUDE_POINTS = [0, 1, 2, 3, 4]   # ✅ 얼굴 keypoints (nose, eyes, ears) 제외
 
 # ---------------------------------------------------------------
 # 🔗 Skeleton 연결 관계 (COCO 공식 17점 구조)
@@ -34,10 +34,6 @@ SKELETON_LINKS = [
     # 팔
     (5, 7), (7, 9),         # Left Arm
     (6, 8), (8, 10),        # Right Arm
-
-    # 얼굴 (머리부)
-    (1, 2), (0, 1), (0, 2),
-    (1, 3), (2, 4), (3, 5), (4, 6)
 ]
 
 # ---------------------------------------------------------------

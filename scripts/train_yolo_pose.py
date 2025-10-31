@@ -82,6 +82,7 @@ def _check_dataset_structure(data_yaml: Path):
     train_img_dir = _resolve(train_rel)
     val_img_dir = _resolve(val_rel)
 
+    # 이미지 디렉토리 존재 확인
     for d, tag in [(train_img_dir, "train images"), (val_img_dir, "val images")]:
         if not d.exists():
             sys.exit(f"[ERR] {tag} 폴더가 없습니다: {d}")
@@ -113,11 +114,13 @@ def _apply_wandb_env(args):
     - .env에 WANDB_API_KEY가 있으면 자동 로그인 시도.
     - --wandb_off / --wandb_project / --wandb_entity / --wandb_mode 지원.
     """
+    # --wandb_off 인자 주어지면 비활성화함
     if args.wandb_off:
         os.environ["WANDB_MODE"] = "disabled"
         print("[W&B] disabled")
         return
 
+    # CLI 인자로 W&B 프로젝트, 엔티티, 모드가 주어지면 환경변수에 설정
     if args.wandb_project:
         os.environ["WANDB_PROJECT"] = args.wandb_project
     if args.wandb_entity:
@@ -126,7 +129,7 @@ def _apply_wandb_env(args):
         # online / offline / disabled
         os.environ["WANDB_MODE"] = args.wandb_mode
 
-    # (선택) run name 보강
+    # Wandb_run_name 이 설정되어 있지않으면 CLI의 --name을 사용하여 설정
     if "WANDB_RUN_NAME" not in os.environ:
         os.environ["WANDB_RUN_NAME"] = getattr(args, "name", "ultralytics-run")
 
@@ -135,6 +138,7 @@ def _apply_wandb_env(args):
         import wandb
         api_key = os.environ.get("WANDB_API_KEY", "")
         if api_key:
+            # 환경변수에 API key 존재시 로그인 시도
             wandb.login(key=api_key, relogin=True)
         print(
             f"[W&B] ok ver={wandb.__version__} "
@@ -194,12 +198,10 @@ def _prune_old_runs(project: Path, name_prefix: str, keep_n: int = 1):
 # Commands
 # ------------------------------------------------------------
 def cmd_train(args):
-    _check_dataset_structure(args.data)
+    _check_dataset_structure(args.data) # 데이터셋 구조와 12KP 설정 검증
+    _apply_wandb_env(args) # W&B 환경 설정/로그인
 
-    # W&B 환경 설정/로그인
-    _apply_wandb_env(args)
-
-    # init weights / resume 처리
+    # 모델 가중치 로드/재시작 전략 결정
     model_path = str(args.model)
     resume_arg = False  # 기본: 새 학습
 
@@ -216,6 +218,8 @@ def cmd_train(args):
         # 같은 project/name의 최근 런에서 자동 재시작
         resume_arg = True
         print("[RESUME] auto from last run in project/name")
+    else:
+        resume_arg = False
 
     model = YOLO(model_path)
 
