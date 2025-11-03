@@ -1,0 +1,53 @@
+# ============================================================
+# train_12kp_ft.yml
+# YOLOv11 Pose-12KP Fine-tuning Configuration
+# ============================================================
+
+# ------------------------------------------------------------
+# 📁 Paths
+# ------------------------------------------------------------
+data: /workspace/nas203/ds_RehabilitationMedicineData/IDs/Kimjihoo/ASAN_01_Repeatition_Counter/data/dataset.yml   # dataset.yml 경로
+model: /workspace/nas203/ds_RehabilitationMedicineData/IDs/Kimjihoo/ASAN_01_Repeatition_Counter/checkpoints/yolo_pose/yolo11m-pose.pt  # COCO 17kp pretrained
+project: /workspace/nas203/ds_RehabilitationMedicineData/IDs/Kimjihoo/ASAN_01_Repeatition_Counter/checkpoints/yolo_pose  # 결과 저장 루트
+name: yolo11_pose_12kp_ft   # run 이름
+
+# ------------------------------------------------------------
+# ⚙️ Training hyperparameters
+# ------------------------------------------------------------
+epochs: 100            # 전체 학습 epoch 수
+batch: 16              # 배치 크기 (GPU VRAM에 맞게 조정)
+imgsz: 640             # 입력 이미지 크기
+device: 0              # 사용할 GPU 번호
+workers: 4             # dataloader worker 수
+lr0: 0.001             # 초기 학습률
+lrf: 0.01              # 최종 학습률 비율
+patience: 50           # early stopping patience
+freeze: 10             # freeze backbone depth (0=전체, 10=neck 이후)
+optimizer: AdamW         # 옵티마이저 (SGD / AdamW)
+from_scratch: false    # pretrained backbone 사용 여부
+deterministic: false    # 재현성 확보
+
+# ------------------------------------------------------------
+# 🧩 Checkpoint & Logging
+# ------------------------------------------------------------
+save_period: 0         # epoch별 .pt 저장 비활성화
+keep: boath             # best.pt만 보관
+retention: 2           # 동일 prefix 런 보관 개수
+no_save_artifacts: true  # 시각화 결과 저장 최소화
+
+# ------------------------------------------------------------
+# 🧠 W&B Integration
+# ------------------------------------------------------------
+wandb_off: false
+wandb_project: ASAN_01_Repeatition_Counter
+wandb_entity: Kimjihoo
+wandb_mode: online
+
+# ------------------------------------------------------------
+# 🪄 Notes
+# ------------------------------------------------------------
+#  - 12 keypoints pose 구조 전용 (kpt_shape=[12,3])
+#  - dataset.yml 내 path/_yolo_stage/images/train, val 사용
+#  - W&B API key는 env/.env 에서 자동 로드됨
+#  - 실행 명령:
+#       python scripts/train_yolo_pose.py train --cfg config/train_12kp_ft.yml

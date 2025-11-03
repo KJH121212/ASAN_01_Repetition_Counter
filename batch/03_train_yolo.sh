@@ -47,12 +47,7 @@ docker run -it --rm --device=nvidia.com/gpu=all --shm-size 1TB \
     -e https_proxy=${https_proxy} \
     ${DOCKER_IMAGE_NAME} \
     bash -lc "
-        cd /workspace/nas203/ds_RehabilitationMedicineData/IDs/Kimjihoo/ASAN_01_Repeatition_Counter/scripts && \
-        python3 train_yolo_pose.py train \
-        --imgsz 640 \
-        --device 0 \
-        --patience 50 \
-        --epochs 100 \
-        --name yolo11_pose_12kp_ft3 \
-        --wandb_project RepeatitionCounter
+        cd /workspace/nas203/ds_RehabilitationMedicineData/IDs/Kimjihoo/ASAN_01_Repeatition_Counter && \
+        python3 scripts/train_yolo_pose.py train \
+        --cfg /workspace/nas203/ds_RehabilitationMedicineData/IDs/Kimjihoo/ASAN_01_Repeatition_Counter/configs/train_12kp_ft.yml \
         "
