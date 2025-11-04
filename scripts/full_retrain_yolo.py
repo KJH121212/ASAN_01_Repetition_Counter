@@ -25,7 +25,7 @@ OUTPUT_DIR = BASE_DIR / "checkpoints/yolo_pose/yolo11_pose_12kp_fullretrain"
 os.environ["YOLO_VERBOSE"] = "True"              # YOLO 로그 자세히 출력
 os.environ["CUDA_VISIBLE_DEVICES"] = "0"         # 사용할 GPU 지정 (예: GPU0)
 
-EPOCHS = 10                                    # 학습 epoch 수
+EPOCHS = 100                                    # 학습 epoch 수
 IMG_SIZE = 640                                  # 입력 이미지 크기
 BATCH = 16                                      # 배치 크기 (GPU VRAM에 맞게 조정)
 LR = 0.0005                                     # 학습률
@@ -68,7 +68,7 @@ results = model.train(
     device=0,                                   # GPU 선택
     project=str(OUTPUT_DIR.parent),             # 결과 상위 폴더
     name=OUTPUT_DIR.name,                       # 세부 폴더 이름
-    exist_ok=True,                              # 동일 폴더 덮어쓰기 허용
+    exist_ok=False,                              # 동일 폴더 덮어쓰기 허용
     pretrained=False,                           # 헤드는 새로 학습하므로 False
     freeze=FREEZE,                              # backbone 일부 freeze
     optimizer="SGD",                            # SGD 또는 AdamW
