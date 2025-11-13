@@ -1,0 +1,39 @@
+# =========================================================
+# YOLO + SORT + Pose Estimation Environment (CUDA 11.8)
+# Verified on: Python 3.10 / Torch 2.1.0 / Ubuntu 20.04
+# =========================================================
+
+# ---------------------------
+# Core Deep Learning Stack
+# ---------------------------
+torch==2.1.0
+torchvision==0.16.0
+torchaudio==2.1.0
+ultralytics==8.3.225
+ultralytics-thop==2.0.18
+
+# ---------------------------
+# Tracking (SORT)
+# ---------------------------
+numpy
+scipy
+
+# ---------------------------
+# Visualization / Debug
+# ---------------------------
+matplotlib==3.10.7
+seaborn==0.13.2
+tqdm==4.65.0
+
+# ---------------------------
+# Experiment Tools
+# ---------------------------
+wandb
+python-dotenv
+
+# ---------------------------
+# Jupyter / Development
+# ---------------------------
+ipykernel==6.29.5
+jupyterlab==4.4.6
+notebook==7.4.5

@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH -J tojihoo_yolo
+#SBATCH -J tojihoo_retraining_yolo
 #SBATCH -t 7-00:00:00
 #SBATCH -o /mnt/nas203/ds_RehabilitationMedicineData/IDs/Kimjihoo/ASAN_01_Repeatition_Counter/batch/logs/%A.out
 #SBATCH --mail-type END,TIME_LIMIT_90,REQUEUE,INVALID_DEPEND
@@ -15,8 +15,8 @@ export HTTPS_PROXY=http://192.168.45.108:3128
 export http_proxy=http://192.168.45.108:3128
 export https_proxy=http://192.168.45.108:3128
 
-DOCKER_IMAGE_NAME="kimjihoo/repetition-counter"
-DOCKER_CONTAINER_NAME="kimjihoo_retrain-yolo"
+DOCKER_IMAGE_NAME="kimjihoo/repetition-counter-yolo"
+DOCKER_CONTAINER_NAME="kimjihoo_retrain_yolo"
 DOCKERFILE_PATH="/mnt/nas203/ds_RehabilitationMedicineData/IDs/Kimjihoo/ASAN_01_Repeatition_Counter/docker/Dockerfile.sapiens"
 WORKSPACE_PATH="/mnt/nas203/ds_RehabilitationMedicineData/IDs/Kimjihoo/ASAN_01_Repeatition_Counter"
 RANDOM_PORT=$(( (RANDOM % 101) + 8000 ))  # 8000~8100 사이 포트
