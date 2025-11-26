@@ -10,7 +10,7 @@ import pandas as pd
 import yaml
 from tqdm import tqdm  # ✅ 진행상황 표시용
 
-BASE_DIR = Path("/workspace/nas203/ds_RehabilitationMedicineData/IDs/Kimjihoo/ASAN_01_Repeatition_Counter")
+BASE_DIR = Path("/workspace/nas203/ds_RehabilitationMedicineData/IDs/tojihoo/ASAN_01_Repeatition_Counter")
 CSV_PATH = BASE_DIR / "data/metadata_backup.csv"
 STAGE_ROOT = BASE_DIR / "data/_yolo_stage"
 OUT_YAML = BASE_DIR / "data/dataset.yml"
@@ -44,32 +44,32 @@ def index_images(frame_dir: Path):
 public_data = [
     {
         "frame_path": "/workspace/nas203/ds_RehabilitationMedicineData/data/d01/body_key_point_Public_Data/COCO/train2017",
-        "yolo_pose_path": "/workspace/nas203/ds_RehabilitationMedicineData/IDs/Kimjihoo/3_project_HCCmove/data/6_YOLO_POSE/public_data/coco/train",
+        "yolo_pose_path": "/workspace/nas203/ds_RehabilitationMedicineData/IDs/tojihoo/3_project_HCCmove/data/6_YOLO_POSE/public_data/coco/train",
         "is_train": True, "is_val": False
     },
     {
         "frame_path": "/workspace/nas203/ds_RehabilitationMedicineData/data/d01/body_key_point_Public_Data/COCO/val2017",
-        "yolo_pose_path": "/workspace/nas203/ds_RehabilitationMedicineData/IDs/Kimjihoo/3_project_HCCmove/data/6_YOLO_POSE/public_data/coco/val",
+        "yolo_pose_path": "/workspace/nas203/ds_RehabilitationMedicineData/IDs/tojihoo/3_project_HCCmove/data/6_YOLO_POSE/public_data/coco/val",
         "is_train": False, "is_val": True
     },
     {
         "frame_path": "/workspace/nas203/ds_RehabilitationMedicineData/data/d01/body_key_point_Public_Data/DWPOSE/images",
-        "yolo_pose_path": "/workspace/nas203/ds_RehabilitationMedicineData/IDs/Kimjihoo/3_project_HCCmove/data/6_YOLO_POSE/public_data/dwpose/train",
+        "yolo_pose_path": "/workspace/nas203/ds_RehabilitationMedicineData/IDs/tojihoo/3_project_HCCmove/data/6_YOLO_POSE/public_data/dwpose/train",
         "is_train": True, "is_val": False
     },
     {
         "frame_path": "/workspace/nas203/ds_RehabilitationMedicineData/data/d01/body_key_point_Public_Data/DWPOSE/images",
-        "yolo_pose_path": "/workspace/nas203/ds_RehabilitationMedicineData/IDs/Kimjihoo/3_project_HCCmove/data/6_YOLO_POSE/public_data/dwpose/val",
+        "yolo_pose_path": "/workspace/nas203/ds_RehabilitationMedicineData/IDs/tojihoo/3_project_HCCmove/data/6_YOLO_POSE/public_data/dwpose/val",
         "is_train": False, "is_val": True
     },
     {
         "frame_path": "/workspace/nas203/ds_RehabilitationMedicineData/data/d01/body_key_point_Public_Data/MPII/mpii/images",
-        "yolo_pose_path": "/workspace/nas203/ds_RehabilitationMedicineData/IDs/Kimjihoo/3_project_HCCmove/data/6_YOLO_POSE/public_data/mpii/train",
+        "yolo_pose_path": "/workspace/nas203/ds_RehabilitationMedicineData/IDs/tojihoo/3_project_HCCmove/data/6_YOLO_POSE/public_data/mpii/train",
         "is_train": True, "is_val": False
     },
     {
         "frame_path": "/workspace/nas203/ds_RehabilitationMedicineData/data/d01/body_key_point_Public_Data/MPII/mpii/images",
-        "yolo_pose_path": "/workspace/nas203/ds_RehabilitationMedicineData/IDs/Kimjihoo/3_project_HCCmove/data/6_YOLO_POSE/public_data/mpii/val",
+        "yolo_pose_path": "/workspace/nas203/ds_RehabilitationMedicineData/IDs/tojihoo/3_project_HCCmove/data/6_YOLO_POSE/public_data/mpii/val",
         "is_train": False, "is_val": True
     },
 ]

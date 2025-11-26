@@ -14,7 +14,7 @@ import os                                        # 환경 변수 설정용
 # ------------------------------------------------
 # 1️⃣ 기본 경로 설정
 # ------------------------------------------------
-BASE_DIR = Path("/workspace/nas203/ds_RehabilitationMedicineData/IDs/Kimjihoo/ASAN_01_Repeatition_Counter")
+BASE_DIR = Path("/workspace/nas203/ds_RehabilitationMedicineData/IDs/tojihoo/ASAN_01_Repeatition_Counter")
 DATA_YAML = BASE_DIR / "data/dataset.yml"         # YOLO dataset.yml (kpt_shape=[12,3])
 PRETRAINED = BASE_DIR / "checkpoints/yolo_pose/yolo11m-pose.pt"  # COCO 17kp pretrained
 OUTPUT_DIR = BASE_DIR / "checkpoints/yolo_pose/yolo11_pose_12kp_fullretrain"

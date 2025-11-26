@@ -11,8 +11,8 @@ from tqdm import tqdm
 # 1️⃣ 설정
 # ------------------------------------------------------------
 VIDEO_ROOT = Path("/workspace/nas203/ds_RehabilitationMedicineData/data/d02")
-BASE_OUT   = Path("/workspace/nas203/ds_RehabilitationMedicineData/IDs/Kimjihoo/3_project_HCCmove/data")
-OUT_CSV    = Path("/workspace/nas203/ds_RehabilitationMedicineData/IDs/Kimjihoo/ASAN_01_Repeatition_Counter/data/metadata_template.csv")
+BASE_OUT   = Path("/workspace/nas203/ds_RehabilitationMedicineData/IDs/tojihoo/3_project_HCCmove/data")
+OUT_CSV    = Path("/workspace/nas203/ds_RehabilitationMedicineData/IDs/tojihoo/ASAN_01_Repeatition_Counter/data/metadata_template.csv")
 
 VIDEO_EXTS = [".mp4", ".avi", ".mov", ".mkv", ".MP4", ".AVI", ".MOV", ".MKV"]
 

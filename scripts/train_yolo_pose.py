@@ -21,7 +21,7 @@ from ultralytics import YOLO
 # ------------------------------------------------------------
 try:
     from dotenv import load_dotenv
-    load_dotenv("/workspace/nas203/ds_RehabilitationMedicineData/IDs/Kimjihoo/ASAN_01_Repeatition_Counter/env/.env")
+    load_dotenv("/workspace/nas203/ds_RehabilitationMedicineData/IDs/tojihoo/ASAN_01_Repeatition_Counter/env/.env")
 except Exception:
     pass
 
@@ -44,7 +44,7 @@ def _load_cfg_yaml(args):
 # ------------------------------------------------------------
 # 기본 경로
 # ------------------------------------------------------------
-BASE_DIR = Path("/workspace/nas203/ds_RehabilitationMedicineData/IDs/Kimjihoo/ASAN_01_Repeatition_Counter")
+BASE_DIR = Path("/workspace/nas203/ds_RehabilitationMedicineData/IDs/tojihoo/ASAN_01_Repeatition_Counter")
 DEFAULT_DATA = BASE_DIR / "data/dataset.yml"
 DEFAULT_MODEL = BASE_DIR / "checkpoints/yolo_pose/yolo11m-pose.pt"
 DEFAULT_PROJECT = BASE_DIR / "checkpoints/yolo_pose"

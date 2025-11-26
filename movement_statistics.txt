@@ -1,0 +1,50 @@
+### Movement Analysis Report ###
+
+Total movement types: 32
+
+### Movement Counts (Ascending Order) ###
+biceps_curl: 35
+bridge_dynamic: 13
+bridge_static: 13
+calf_raise: 2
+chest_press: 10
+clamshell: 21
+curl_up: 17
+dont_know: 11
+hip_extension: 2
+hip_knee_flexion: 60
+hooklying_hip_flexion: 26
+hooklying_knee_extension: 1
+hooklying_trunk_rotation: 1
+knee_extension: 10
+knee_extension_static: 6
+knee_flexion: 2
+leg_cycle_exercise: 14
+leg_swing: 2
+longsitting_knee_flexion: 23
+pec_dec_fly: 56
+q_setting: 11
+rowing: 42
+shoulder_abduction: 8
+shoulder_flexion: 66
+shoulder_press: 67
+side_biceps_curl: 2
+sit_leg_swing: 2
+sit_to_stand: 2
+sitting_hip_flexion: 7
+slr: 76
+swing: 6
+walking: 2
+
+### Most Common ###
+slr: 76
+
+### Least Common ###
+hooklying_trunk_rotation: 1
+
+### View Count ###
+frontal: 337
+lateral: 243
+
+### Invalid File Paths ###
+None
