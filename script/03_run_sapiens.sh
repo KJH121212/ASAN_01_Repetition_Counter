@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH -J tojihoo_sapiens
 #SBATCH -t 7-00:00:00
-#SBATCH -o /mnt/nas203/ds_RehabilitationMedicineData/IDs/tojihoo/ASAN_01_Repeatition_Counter/batch/logs/%A.out
+#SBATCH -o /mnt/nas203/ds_RehabilitationMedicineData/IDs/tojihoo/ASAN_01_Repeatition_Counter/bscriptatch/logs/%A.out
 #SBATCH --mail-type END,TIME_LIMIT_90,REQUEUE,INVALID_DEPEND
 #SBATCH --mail-user jihu6033@gmail.com
 #SBATCH -p RTX3090
@@ -20,7 +20,7 @@ DOCKER_CONTAINER_NAME="tojihoo_running_sapiens"
 DOCKERFILE_PATH="/mnt/nas203/ds_RehabilitationMedicineData/IDs/tojihoo/ASAN_01_Repeatition_Counter/docker/Dockerfile.sapiens"
 WORKSPACE_PATH="/mnt/nas203/ds_RehabilitationMedicineData/IDs/tojihoo/ASAN_01_Repeatition_Counter"
 RANDOM_PORT=$(( (RANDOM % 101) + 8000 ))  # 8000~8100 사이 포트
-LOG_PATH="/mnt/nas203/ds_RehabilitationMedicineData/IDs/tojihoo/ASAN_01_Repeatition_Counter/batch/logs"
+LOG_PATH="/mnt/nas203/ds_RehabilitationMedicineData/IDs/tojihoo/ASAN_01_Repeatition_Counter/script/logs"
 
 # ------------------------------------------------------------
 # Docker 이미지 빌드
@@ -47,8 +47,7 @@ docker run -it --rm --device=nvidia.com/gpu=all --shm-size 1TB \
     -e https_proxy=${https_proxy} \
     ${DOCKER_IMAGE_NAME} \
     bash -c "
-        cd /workspace/nas203/ds_RehabilitationMedicineData/IDs/tojihoo/ASAN_01_Repeatition_Counter/scripts && \
-        echo '[INFO] Running sapiens_pipeline.py...' && \
+        cd /workspace/nas203/ds_RehabilitationMedicineData/IDs/tojihoo/ASAN_01_Repeatition_Counter/runner && \
         python3 sapiens_pipeline.py
     "
 

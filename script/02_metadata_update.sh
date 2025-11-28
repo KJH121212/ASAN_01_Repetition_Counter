@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH -J tojihoo_metadata_update
 #SBATCH -t 7-00:00:00
-#SBATCH -o /mnt/nas203/ds_RehabilitationMedicineData/IDs/tojihoo/ASAN_01_Repeatition_Counter/batch/logs/%A.out
+#SBATCH -o /mnt/nas203/ds_RehabilitationMedicineData/IDs/tojihoo/ASAN_01_Repeatition_Counter/script/logs/%A.out
 #SBATCH --mail-type END,TIME_LIMIT_90,REQUEUE,INVALID_DEPEND
 #SBATCH --mail-user jihu6033@gmail.com
 #SBATCH -p RTX3090
@@ -35,6 +35,6 @@ docker run -it --rm --device=nvidia.com/gpu=all --shm-size 1TB \
     -e https_proxy=${https_proxy} \
     ${DOCKER_IMAGE_NAME} \
     bash -c "
-        cd /workspace/nas203/ds_RehabilitationMedicineData/IDs/tojihoo/ASAN_01_Repeatition_Counter/scripts && \
+        cd /workspace/nas203/ds_RehabilitationMedicineData/IDs/tojihoo/ASAN_01_Repeatition_Counter/runner && \
         python3 synk_metadata.py
     "
