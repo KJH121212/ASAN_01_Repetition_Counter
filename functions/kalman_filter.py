@@ -1,9 +1,12 @@
 import numpy as np
 from typing import List, Dict, Optional
 
+# process_noise_std 증가시 물체의 움직임니 불규칙하다고 가정해 예측값에 대한 확신을 낮춤
+# measurement_noise_std 증가시 측정값에 noise가 많다고 가정, 클수록 latency가 크게 발생
+
 class RobustKalmanFilter:
     # 잡음 수준, 이상치 임계값을 인수로 받음
-    def __init__(self, process_noise_std: float = 0.5, measurement_noise_std: float = 10.0, outlier_threshold: float = 15):
+    def __init__(self, process_noise_std: float = 1.0, measurement_noise_std: float = 5.0, outlier_threshold: float = 30):
 
         self.dt = 1.0                           # 시간 간격(프레임 단위, 1로 고정)
         self.threshold = outlier_threshold      # 마할라노비스 거리 제곱 임계값

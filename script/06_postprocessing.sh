@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH -J tojihoo_finetuning_yolo
+#SBATCH -J tojihoo_postprocessing
 #SBATCH -t 7-00:00:00
 #SBATCH -o /mnt/nas203/ds_RehabilitationMedicineData/IDs/tojihoo/ASAN_01_Repeatition_Counter/script/logs/%A.out
 #SBATCH --mail-type END,TIME_LIMIT_90,REQUEUE,INVALID_DEPEND

@@ -69,7 +69,7 @@ def main():
             label_string, view_angle, action_name = extract_info_from_filepath(frame_path)
             
             # 영상 저장 경로
-            video_output_path = OUTPUT_DIR / f"{label_string}_filtered.mp4"
+            video_output_path = row['mp4_path']
 
             # --- 2. 키포인트 데이터 로드 ---
             raw_data = load_kpt(keypoints_path, start_frame, end_frame)
@@ -91,7 +91,7 @@ def main():
                 processed_input = patient_kpts
 
             # --- 5. 칼만 필터 적용 ---
-            final_data = filter_and_extract_body_keypoints(processed_input)
+            final_data = filter_and_extract_body_keypoints(processed_input,outlier_threshold=15)
 
             # # --- 6. 결과 영상 생성 ---
             # # (내부 함수인 render_skeleton... 에도 tqdm이 있다면 거기서 진행바가 나올 수 있습니다)
@@ -103,6 +103,7 @@ def main():
                 end_frame=end_frame,
                 flip_horizontal=True
             )
+            print(f"{video_output_path}에 비디오를 저장했습니다.")
 
             # --- 7. 결과 JSON 저장 ---
             if json_output_path:
